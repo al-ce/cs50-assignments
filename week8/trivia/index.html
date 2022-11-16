@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Button test page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
+  <title>Trivia!</title>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Trivia!</h1>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <h2>Part 1: Multiple Choice</h2>
+      <hr>
+      <h3>What is the music of life?</h3>
+      <hr>
+      </p>
+      <br>
+      <button id="answer">Um... the lute? No, drums!</button>
+      <button id="wrong1">Screaming?</button>
+      <button id="wrong2">Some kind of choir. With chanting.</button>
+    <p id="q1">
+    </div>
+
+      <script>
+
+        let response0 = document.querySelector('#answer');
+        let response1 = document.querySelector('#wrong1');
+        let response2 = document.querySelector('#wrong2');
+        let q1 = document.querySelector('#q1')
+        response0.addEventListener('click', function () {
+          response0.style.backgroundColor = 'green';
+          response1.style.backgroundColor = '#28292A';
+          response2.style.backgroundColor = '#28292A';
+          q1.innerHTML = 'Correct!'
+        });
+
+        response1.addEventListener('click', function () {
+          response1.style.backgroundColor = 'red';
+          response0.style.backgroundColor = '#28292A';
+          response2.style.backgroundColor = '#28292A';
+          q1.innerHTML = 'Incorrect'
+        });
+
+        response2.addEventListener('click', function () {
+          response2.style.backgroundColor = 'red';
+          response0.style.backgroundColor = '#28292A';
+          response1.style.backgroundColor = '#28292A';
+          q1.innerHTML = 'Incorrect'
+        });
+
+      </script>
+
+    <div class="section">
+      <h2>Part 2: Free Response</h2>
+      <hr>
+      <h3>What is life's greatest illusion?</h3>
+      <hr>
+      </p>
+      <form>
+        <input autocomplete="off" autoofcus id="free" placeholder="Answer" type="text">
+        <button id='check'>Check answer</button>
+      </form>
+      <p id="q2">
+
+    </div>
+
+    <script>
+
+      document.querySelector('#check').addEventListener('click', function (e) {
+        let q2 = document.querySelector('#q2')
+        let answer = document.querySelector('#free')
+        if (answer.value == 'Um... The one where you saw a lady in half?') {
+          answer.style.backgroundColor = 'green'
+          q2.innerHTML = 'Correct!'
+        }
+        else {
+          answer.style.backgroundColor = 'red'
+          q2.innerHTML = 'Incorrect'
+        }
+        e.preventDefault()
+      });
+
+    </script>
+
+  </div>
+</body>
+
+</html>
