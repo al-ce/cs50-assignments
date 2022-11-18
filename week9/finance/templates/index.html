@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stock Summary
+{% endblock %}
+
+{% block main %}
+
+
+    <div class="header">
+        <h3>User Information</h3>
+    </div>
+
+</div>
+<div class="container">
+
+
+
+    <div class="section">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Cash Balance</th>
+                    <th>Net Worth</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td>{{ username }}</td>
+                  <td>{{ cash_balance | usd }}</td>
+                  <td>{{ grand_total | usd  }}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+    <div class="header">
+        <h3>Stock Summary</h3>
+    </div>
+
+
+</div>
+<div class="container">
+
+
+
+    <div class="section">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>Total Value</th>
+                    <th>Buy</th>
+                    <th>Sell</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for stock in stock_summary %}
+                <tr>
+                  <td>{{ stock["name"] }}</td>
+                  <td>{{ stock["symbol"] }}</td>
+                  <td>{{ stock["shares"] }}</td>
+                  <td>{{ stock["price"] | usd }}</td>
+                  <td>{{ stock["total_value"] | usd }}</td>
+                  <td>
+                    <form action="/buy" method="post">
+                        <input autocomplete="off" autofocus id="shares" name="shares" placeholder="shares" size=5 type="text">
+                        <input type="hidden" name="symbol" value= {{ stock["symbol"]}} />
+                        <button class="btn btn-primary" type="submit">Buy</button>
+                    </form>
+
+                  </td>
+                  <td>
+                    <form action="/sell" method="post">
+                        <input autocomplete="off" autofocus id="shares" name="shares" placeholder="shares" size=5 type="text">
+                        <input type="hidden" name="symbol" value= {{ stock["symbol"]}} />
+                        <button class="btn btn-primary" type="submit">Sell</button>
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
